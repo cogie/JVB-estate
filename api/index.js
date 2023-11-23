@@ -25,3 +25,13 @@ app.listen(3000, () => {
 //api
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+
+app.use(()=>{
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
+  return resizeBy.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
