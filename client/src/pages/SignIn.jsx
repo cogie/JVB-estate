@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { sigInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 
 export default function SignIn() {
       //need a variable to handle changes
@@ -12,7 +12,7 @@ export default function SignIn() {
       const navigate = useNavigate();
       const dispatch = useDispatch();
     
-      const handleChange = (e)=>{
+      const handleChange = (e) => {
         setFormData({
           ...formData,
           [e.target.id]:e.target.value,
@@ -24,7 +24,7 @@ export default function SignIn() {
         e.preventDefault();
         try {
           //setLoading(true);
-          dispatch(sigInStart());
+          dispatch(signInStart());
           //need to fetch datas
           const res  = await fetch('/api/auth/signin',{
             method: 'POST',
