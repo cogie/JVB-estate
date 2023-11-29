@@ -77,3 +77,13 @@ export const  google = async (req, res, nect) => {
     next(error);
   }
 };
+
+//signout user from the system/ just delete cookie
+export const signOut = async (req, res, next) => {
+  try {
+    res.clearCookie('access_token');
+    res.status(201).json("User has been logged out!");
+  } catch (error) {
+    next(error);
+  }
+};
