@@ -139,7 +139,7 @@ export default function Profile() {
       {/* clickable avatar to upload new */}
           <input type="file" onChange={(e) => setFile(e.target.files[0])} ref={fileRef} hidden accept="image/*"/> 
           <img onClick={()=> fileRef.current.click()} src={formData.avatar || currentUser.avatar} alt="profile" 
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" />
+          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2 border" />
           <p className="self-center text-sm">
             {fileUploadError ? (
             <span className="text-red-700">Error Image upload (image should be less than 10mb)</span>
