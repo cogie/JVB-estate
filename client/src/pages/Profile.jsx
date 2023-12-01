@@ -14,6 +14,7 @@ import userSlice, {
   signOutUserFailure,
  } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -178,6 +179,9 @@ export default function Profile() {
            text-white hover:opacity-95 disabled:opacity-80">
             {loading ? 'Loading...' : 'Update'}
           </button> 
+          <Link to={'/create-listing'} className="bg-green-700 p-3 rounded-lg text-white uppercase text-center hover:opacity-95">
+            Create Listing
+          </Link>
       </form>
       <div className="flex justify-between mt-5">
         <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer ">Delete account?</span>
