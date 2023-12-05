@@ -1,18 +1,16 @@
 import { useState } from "react"
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+import { getDownloadURL, getStorage, ref, uploadBytesResumable, uploadString } from 'firebase/storage';
 import { app } from '../firebase'
 
 export default function CreateListing() {
     const [files, setFiles] = useState([]);
-
     const [formData, setFormData] = useState({
         imageUrls: [],
-
     });
     console.log(formData);
     //image
-    const handleImageSubmit =  (e) => {
-        if(files.length > 0 && files < 7){
+    const handleImageSubmit = (e) => {
+        if(files.length > 0 && files.length < 7){
             const promises = []; //return multiple images
 
             //function for each images upload/storing
@@ -37,7 +35,7 @@ export default function CreateListing() {
                 "state_changed",
                 (snapshot) => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log(`Upload is ${progress}% done`)
+                    console.log(`Upload is ${progress}% done`);
                 },
                 (error)=> {
                     reject(error);
@@ -117,7 +115,7 @@ export default function CreateListing() {
                 <button type="button" 
                 onClick={handleImageSubmit} 
                 className="p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80">
-                    Upload
+                    upload
                 </button>
             </div>
             <button className="p-3 rounded-lg bg-slate-700 text-white uppercase hover:opacity-95 disabled:opacity-80">Create Listing</button>
