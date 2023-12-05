@@ -4,13 +4,14 @@ import { app } from '../firebase'
 
 export default function CreateListing() {
     const [files, setFiles] = useState([]);
+    const [imageUploadError, setimageUploadError] = useState(false);
     const [formData, setFormData] = useState({
         imageUrls: [],
     });
     console.log(formData);
     //image
     const handleImageSubmit = (e) => {
-        if(files.length > 0 && files.length < 7){
+        if(files.length > 0 && files.length + formData.imageUrls.length < 7){
             const promises = []; //return multiple images
 
             //function for each images upload/storing
@@ -20,7 +21,13 @@ export default function CreateListing() {
             Promise.all(promises).then((urls) => {
                 setFormData({...formData, imageUrls: formData.imageUrls.concat(urls), 
                 });
+                setimageUploadError(false);
+            })
+            .catch((error) => {
+                setimageUploadError('Image upload failed (10 mb max per image)')
             });
+        }else{
+            setimageUploadError('You can only upload 6 images per listing');
         }
     };
 
@@ -118,6 +125,12 @@ export default function CreateListing() {
                     upload
                 </button>
             </div>
+            <p className="text-red-700 text-sm">{imageUploadError && imageUploadError}</p>
+            {
+                formData.imageUrls.length > 0 && formData.imageUrls.map((urls) => (
+                    <img src="url" alt="listing image" className="w-40 h-40 object-cover rounded-lg" />
+                ))  
+            }
             <button className="p-3 rounded-lg bg-slate-700 text-white uppercase hover:opacity-95 disabled:opacity-80">Create Listing</button>
         </div>
     </form>
