@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { getDownloadURL, getStorage, ref, uploadBytesResumable, uploadString } from 'firebase/storage';
 import { app } from '../firebase'
+import {useSelector} from 'react-redux'
 
 export default function CreateListing() {
+    const {currentUser} = useSelector(state => state.user);
     const [files, setFiles] = useState([]);
     const [imageUploadError, setimageUploadError] = useState(false);
     const [formData, setFormData] = useState({
@@ -20,6 +22,8 @@ export default function CreateListing() {
         furnished: false,
     });
     const [uploading, setUploading] = useState(false);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     console.log(formData);
 
     //image
@@ -83,7 +87,7 @@ export default function CreateListing() {
         });
     };
 
-
+    //handles storing of data
     const handleChange = (e) => {
         if(e.target.id === 'sale' || e.target.id === 'rent'){
             setFormData({
@@ -91,16 +95,59 @@ export default function CreateListing() {
                 type: e.target.id
             });
         }
+
+        if(e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer'){
+            setFormData({
+                ...formData,
+                [e.target.id]: e.target.checked
+            });
+        };
+
+        if(e.target.type === 'number' || e.target.type === 'text' || e.target.type === 'textarea'){
+            setFormData({
+                ...formData,
+                [e.target.id]: e.target.value
+            });
+        };
+
     }; 
+
+    //submit data to the backend as json file
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            setError(false);
+
+            const res = await fetch('/api/listing/create',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    userRef: currentUser._id,
+                })
+            });
+            const data = await res.json();
+            setLoading(false);
+            if(data.success === false){
+                setError(data.message);
+            };
+        } catch (error) {
+            setError(error.message);
+            setLoading(false);
+        }
+    };
   return (
     <main className="p-3 max-w-4xl mx-auto">
     <h1 className="text-3xl font-semibold text-center my-7">Create a Listing</h1>
-    <form className="flex flex-col sm:flex-row gap-4">
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
         {/* 1st div */}
         <div className="flex flex-col gap-4 flex-1">
             <input onChange={handleChange} value={formData.name} type="text" placeholder="Name" className="border p-3 rounded-lg" id="name" maxLength="62" minLength="10" required/>
             <textarea onChange={handleChange} value={formData.description} type="text" placeholder="Description" className="border p-3 rounded-lg" id="description" required/>
-            <input onChange={handleChange} value={formData.address} type="text" placeholder="Address" className="border p-3 rounded-lg" id="Address" required/>
+            <input onChange={handleChange} value={formData.address} type="text" placeholder="Address" className="border p-3 rounded-lg" id="address" required/>
             <div className="flex gap-6 flex-wrap">
                 <div className="flex gap-2">
                     <input onChange={handleChange} checked={formData.type === 'sale'} type="checkbox" id="sale" className="w-5"/>
@@ -173,7 +220,10 @@ export default function CreateListing() {
                     
                 ))  
             }
-            <button className="p-3 rounded-lg bg-slate-700 text-white uppercase hover:opacity-95 disabled:opacity-80">Create Listing</button>
+            <button className="p-3 rounded-lg bg-slate-700 text-white uppercase hover:opacity-95 disabled:opacity-80">
+                {loading ? 'Creating...' : 'Create Listing'}
+            </button>
+            {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>
     </form>
     </main>
