@@ -250,10 +250,12 @@ export default function Profile() {
               className="text-red-700 uppercase hover:shadow-lg">
                 Delete
               </button>
-              <button 
-              className="text-green-700 uppercase hover:shadow-lg">
-                Edit
-              </button>
+              <Link to={`update-listing/${listing._id}`}>
+                <button 
+                className="text-green-700 uppercase hover:shadow-lg">
+                  Edit
+                </button>
+              </Link>
             </div>
           </div>
         ))}
