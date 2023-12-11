@@ -120,7 +120,7 @@ export default function CreateListing() {
         try {
             //handles if the data are missing or incomplete
             if(formData.imageUrls.length < 1) return setError('You must upload  at least one image');
-            if(+formData.regularPrice < +formData.discountedPrice) return setError('Discounted price must be lower than regular price');
+            if(+formData.regularPrice < +formData.discountedPrice) return setError('Discounted price must be lower than regular price'); //not working
             setLoading(true);
             setError(false);
 
@@ -187,7 +187,7 @@ export default function CreateListing() {
                     <p>Bath</p>
                 </div>
                 <div className="flex gap-2 items-center">
-                    <input onChange={handleChange} value={formData.regularPrice} className=" p-3 border border-gray-300 rounded-lg" type="number" id='regularPrice' min='0' max='100000000'required/>
+                    <input onChange={handleChange} value={formData.regularPrice} className=" p-3 border border-gray-300 rounded-lg" type="number" id='regularPrice' min='0' max='10000000'required/>
                     <div className="flex flex-col items-center">
                         <p>Regular price</p>
                         <span className="text-xs">(₱ / Month)</span>
@@ -195,7 +195,7 @@ export default function CreateListing() {
                 </div>
                 {formData.offer && (      
                     <div className="flex gap-2 items-center">
-                        <input onChange={handleChange} value={formData.discountedPrice} className="border border-gray-300 rounded-lg p-3" type="number" id='discountedPrice' min='50' max='100000000'required/>
+                        <input onChange={handleChange} value={formData.discountedPrice} className="border border-gray-300 rounded-lg p-3" type="number" id='discountedPrice' min='50' max='10000000'required/>
                         <div className="flex flex-col items-center">
                             <p>Discounted price</p>
                             <span className="text-xs">(₱ / Month)</span>
