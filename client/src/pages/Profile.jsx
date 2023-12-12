@@ -250,7 +250,8 @@ export default function Profile() {
               className="text-red-700 uppercase hover:shadow-lg">
                 Delete
               </button>
-              <Link to={`update-listing/${listing._id}`}>
+              {/* need to get the listingId for update-listing */}
+              <Link to={`update-listing/${listing._id}`}> 
                 <button 
                 className="text-green-700 uppercase hover:shadow-lg">
                   Edit
