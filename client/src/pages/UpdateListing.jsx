@@ -4,6 +4,7 @@ import { app } from '../firebase'
 import {useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom';
 
+//need to fix path into update-listing
 export default function UpdateListing() {
     const {currentUser} = useSelector(state => state.user);
     const [files, setFiles] = useState([]);

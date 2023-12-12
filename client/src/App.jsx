@@ -23,8 +23,8 @@ export default function App() {
           {/* make profile priveate */}
             <Route path='/profile' element={<Profile />}/>
             <Route path='/create-listing' element={<CreateListing />}/>
-            <Route path='/update-listing/:listingId' 
-            element={<UpdateListing/>} />
+            <Route path='/update-listing' //need to add id to get into update user info
+            element={<UpdateListing />} />
           </Route>
           <Route path='/about' element={<About />}/>
       </Routes>
