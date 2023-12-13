@@ -4,8 +4,7 @@ import { app } from '../firebase'
 import {useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom';
 
-//need to fix path into update-listing
-export default function UpdateListing() {
+export default function CreateListing() {
     const {currentUser} = useSelector(state => state.user);
     const [files, setFiles] = useState([]);
     const navigate  = useNavigate();
@@ -230,7 +229,7 @@ export default function UpdateListing() {
                 ))  
             }
             <button disabled={loading || uploading} className="p-3 rounded-lg bg-slate-700 text-white uppercase hover:opacity-95 disabled:opacity-80">
-                {loading ? 'Updating...' : 'Update Listing'}
+                {loading ? 'Creating...' : 'Create Listing'}
             </button>
             {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>

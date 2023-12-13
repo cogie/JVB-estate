@@ -1,6 +1,6 @@
 import {useSelector} from "react-redux"
 import { useRef, useState, useEffect} from "react";
-import {getDownloadURL, getStorage, list, ref, uploadBytesResumable} from "firebase/storage"
+import {getDownloadURL, getStorage, ref, uploadBytesResumable} from "firebase/storage"
 import { app } from "../firebase"
 import userSlice, { 
   updateUserStart, 
@@ -251,7 +251,7 @@ export default function Profile() {
                 Delete
               </button>
               {/* need to get the listingId for update-listing */}
-              <Link to={`update-listing/${listing._id}`}> 
+              <Link to={`/update-listing/${listing._id}`}> 
                 <button 
                 className="text-green-700 uppercase hover:shadow-lg">
                   Edit
