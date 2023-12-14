@@ -11,7 +11,7 @@ export default function Listing() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     SwiperCore.use([Navigation]);
-    
+
     useEffect(() => {
         const fetchListing = async () => {
             try {
@@ -43,7 +43,21 @@ export default function Listing() {
 
          {/*show img at the top  */}
          {listing && !loading && !error && (
-                <h1>{listing.name}</h1>
+                // swiper
+                <div>
+                    <Swiper navigation>
+                        {listing.imageUrls.map((url) => (
+                            <SwiperSlide key={url}>
+                                <div className="h-[550px]" 
+                                style = {{ background: `url(${url}) center
+                                no-repeat`,
+                                backgourndSize: 'cover' }}>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+                
             )
          }
     </main>
