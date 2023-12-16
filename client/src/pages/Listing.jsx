@@ -15,15 +15,17 @@ import {
     FaSearch,
     FaShare,
   } from 'react-icons/fa';
+import Contact from "../components/Contact";
 
 export default function Listing() {
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [contact, setContact] = useState(false);
     SwiperCore.use([Navigation]);
     const params = useParams();
-    const { currentUser } = useSelector((state) => state.user); 
+    const {currentUser} = useSelector((state) => state.user); 
 
     useEffect(() => {
         const fetchListing = async () => {
@@ -47,7 +49,7 @@ export default function Listing() {
         };
         fetchListing();
     }, [params.listingId]);
-    console.log(loading)
+    //console.log(loading)
   return (
     <main>
         {/* loading effect end error */}
@@ -139,9 +141,16 @@ export default function Listing() {
                                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
                             </li>
                         </ul>
-                        <button className="bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 mt-5">
-                            Contact Landlord
-                        </button>
+                        {currentUser && listing.userRef !== currentUser._id && !contact && 
+                                (
+                                    <button onClick={()=> setContact(true)} className="bg-blue-900 text-white rounded-lg uppercase hover:opacity-95 p-3 mt-5">
+                                        Contact Landlord
+                                    </button>
+                                )
+                        }
+                        {   //component
+                            contact && <Contact listing={listing}/>
+                        }
                     </div>
                 </div>
             )
