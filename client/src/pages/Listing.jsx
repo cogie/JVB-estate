@@ -9,13 +9,11 @@ import {
     FaBath,
     FaBed,
     FaChair,
-    FaMapMarkedAlt,
     FaMapMarkerAlt,
     FaParking,
-    FaSearch,
     FaShare,
   } from 'react-icons/fa';
-import Contact from "../components/Contact";
+import Contact from "../components/Contact.jsx";
 
 export default function Listing() {
     const [listing, setListing] = useState(null);

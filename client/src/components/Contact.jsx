@@ -29,7 +29,7 @@ export default function Contact({listing}) {
             landlord && (
                 <div className='flex flex-col gap-2'>
                     <p className=''>
-                        Contact: {' '}
+                        Contact:
                         <span className='font-semibold'>
                             {landlord.username} {' '}
                         </span>
