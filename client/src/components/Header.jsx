@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux'
 import { useEffect, useState } from 'react';
 
 export default function Header() {
-    const {currentUser} = useSelector(state => state.user);
+    const {currentUser} = useSelector((state) => state.user);
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ export default function Header() {
             </h1>
         </Link>
         {/* Search bar */}
-        <form onChange={handleSubmit} className='bg-slate-100 p-3 rounded-lg flex items-center'> 
+        <form onSubmit={handleSubmit} className='bg-slate-100 p-3 rounded-lg flex items-center'> 
             <input 
             type="text" 
             placeholder='Search...' 
