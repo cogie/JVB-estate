@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function Search() {
 
+    const navigate = useNavigate();
     const [sidebardata, setSidebardata] = useState({
         searchTerm: '',
         type: 'all',
@@ -11,8 +13,53 @@ export default function Search() {
         sort: 'created_at',
         order: 'desc',
     });
+    const [loading, setLoading] = useState(false);
+    const [Listings, setListings] = useState([]);
+    console.log(Listings)
 
-    console.log(sidebardata);
+    //console.log(sidebardata);
+    useEffect(() => {
+        const urlParams = new URLSearchParams(location.search);
+        const searchTermFromUrl = urlParams.get('searchTerm');
+        const typeFromUrl = urlParams.get('type');
+        const parkingFromUrl = urlParams.get('parking');
+        const furnishedFromUrl = urlParams.get('furnished');
+        const offerFromUrl = urlParams.get('offer');
+        const sortFromUrl = urlParams.get('sort');
+        const orderFromUrl = urlParams.get('oder');
+
+        if(
+            searchTermFromUrl ||
+            typeFromUrl || 
+            parkingFromUrl ||
+            furnishedFromUrl || 
+            offerFromUrl ||
+            sortFromUrl ||
+            orderFromUrl
+        ){
+            setSidebardata({
+                searchTerm: searchTermFromUrl || '',
+                type: typeFromUrl || 'all',
+                parking: parkingFromUrl === 'true' ? true : false,
+                furnished: furnishedFromUrl === 'true' ? true : false,
+                offer: offerFromUrl === 'true' ? true : false,
+                sort: sortFromUrl || 'created_at',
+                order: orderFromUrl || 'desc',
+                
+            });
+        }
+
+        const fetchListings = async () => {
+            setLoading(true);
+            const searchQuery = urlParams.toString();
+            const res = await fetch(`/api/listing/get?${searchQuery}`);
+            const data = await res.json();
+            setListings(data);
+            setLoading(false);
+        };
+        fetchListings();
+    }, [location.search]);
+
     const handleChange = (e) => {
         //1st condition
         if (
@@ -55,11 +102,27 @@ export default function Search() {
         }
     };
 
+    //handles the submition of the data to the backend
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const urlParams = new URLSearchParams();
+        urlParams.set('searchTerm', sidebardata.searchTerm); //did change form searc to search
+        urlParams.set('type', sidebardata.type);
+        urlParams.set('parking', sidebardata.parking);
+        urlParams.set('furnished', sidebardata.furnished);
+        urlParams.set('offer', sidebardata.offer);
+        urlParams.set('sort', sidebardata.sort);
+        urlParams.set('order', sidebardata.order);
+
+        const searchQuery = urlParams.toString();
+        navigate(`/search?${searchQuery}`);
+    };
+
   return (
     <div className='flex flex-col md:flex-row'>
         {/* left side */}
         <div className='p-7 border-b-2 md:border-r-2 md:min-h-screen'>
-            <form action="" className='flex flex-col gap-8'>
+            <form onSubmit={handleSubmit} action="" className='flex flex-col gap-8'>
                 <div className='flex items-center gap-2'>
                     <label className='whitespace-nowrap font-semibold'>Search Term:</label>
                     <input type="text" 
