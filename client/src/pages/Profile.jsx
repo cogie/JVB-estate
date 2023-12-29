@@ -15,6 +15,7 @@ import userSlice, {
  } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
+import Contact from "../components/Contact"; //hmmm i think change?
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -243,6 +244,7 @@ export default function Profile() {
             <Link className="flex-1 text-slate-700 font-semibold hover:underline truncate" to={`/listing/${listing._id}`}>
               <p>{listing.name}</p>
             </Link>
+            <Contact fileRef={fileRef} />
 
             <div className="flex flex-col items-center">
               <button 
