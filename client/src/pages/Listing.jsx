@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react'; 
 import  SwiperCore  from "swiper";
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css/bundle';
 import {useSelector} from 'react-redux'
 import {
@@ -21,7 +21,7 @@ export default function Listing() {
     const [error, setError] = useState(false);
     const [copied, setCopied] = useState(false);
     const [contact, setContact] = useState(false);
-    SwiperCore.use([Navigation]);
+    SwiperCore.use([Navigation, Autoplay]);
     const params = useParams();
     const {currentUser} = useSelector((state) => state.user); 
 
@@ -59,7 +59,7 @@ export default function Listing() {
                 // swiper
                 <div>
                     {/* need to add autoplay swiper */}
-                    <Swiper navigation> 
+                    <Swiper navigation autoplay={{delay: 3000}}> 
                         {listing.imageUrls.map((url) => (
                             <SwiperSlide key={url}>
                                 <div className="h-[500px]" 

@@ -25,7 +25,7 @@ export default function Contact({ listing }) {
   };
 
   return (
-    <>
+    <div className="border border-gray-300 p-4 rounded-lg font-sans text-gray-800">
       {landlord && (
         <div className="flex flex-col gap-2">
           <img
@@ -33,7 +33,7 @@ export default function Contact({ listing }) {
             alt="profile"
             className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2 border"
           />
-          <p className="">
+          <p className="text-lg">
             Contact:
             <span className="font-semibold">{landlord.username} </span>
             for{' '}
@@ -41,11 +41,11 @@ export default function Contact({ listing }) {
           </p>
           <div className="flex flex-col">
             {/* Display profile information of the user who needs to be contacted */}
-            <p>
+            <p className="text-sm">
               User to be Contacted:
               <span className="font-semibold">{landlord.username}</span>
             </p>
-            <p>Email: {landlord.email}</p>
+            <p className="text-sm">Email: {landlord.email}</p>
             {/* Add more profile information as needed */}
           </div>
           <textarea
@@ -55,17 +55,17 @@ export default function Contact({ listing }) {
             value={message}
             onChange={onChange}
             placeholder="Enter message here...."
-            className="w-full border border-gray-300 rounded-lg p-3"
+            className="w-full border border-gray-300 rounded-lg p-3 text-sm"
           ></textarea>
           {/* Send mail to the landlord's email */}
           <Link
             to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
-            className="bg-blue-900 text-white rounded-lg text-center p-3 uppercase hover:opacity-95"
+            className="bg-blue-900 text-white rounded-lg text-center p-3 uppercase hover:opacity-95 mt-4 text-sm"
           >
             Send Message
           </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -244,7 +244,7 @@ export default function Profile() {
             <Link className="flex-1 text-slate-700 font-semibold hover:underline truncate" to={`/listing/${listing._id}`}>
               <p>{listing.name}</p>
             </Link>
-            <Contact fileRef={fileRef} />
+            {/* <Contact fileRef={fileRef} /> */}
 
             <div className="flex flex-col items-center">
               <button 

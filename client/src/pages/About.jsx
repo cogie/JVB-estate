@@ -1,14 +1,42 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import Contact from '../components/Contact';
 
 export default function About() {
   return (
-    <div className='py-20 px-4 max-w-6xl mx-auto'>
-      <h1 className='text-3xl font-bold mb-4 text-slate-800'>About JVBReal Estate</h1>
-      <p className='mb-4 text-slate-700'>JVBReal Estate is a leading real estate agency that specializes in helping clients buy, sell, and rent properties in the most desirable neighborhoods. Our team of experienced agents is dedicated to providing exceptional service and making the buying and selling process as smooth as possible.</p>
-      <p className='mb-4 text-slate-700'>
-      Our mission is to help our clients achieve their real estate goals by providing expert advice, personalized service, and a deep understanding of the local market. Whether you are looking to buy, sell, or rent a property, we are here to help you every step of the way.
-      </p>
-      <p className='mb-4 text-slate-700'>Our team of agents has a wealth of experience and knowledge in the real estate industry, and we are committed to providing the highest level of service to our clients. We believe that buying or selling a property should be an exciting and rewarding experience, and we are dedicated to making that a reality for each and every one of our clients.</p>
+    <div className="flex flex-col min-h-screen bg-white">
+      <div className="py-20 px-4 max-w-6xl mx-auto text-center flex-grow">
+        <h1 className="text-4xl font-bold mb-6 text-blue-900">About JVBReal Estate</h1>
+        <p className="mb-8 text-lg text-gray-700">
+          Welcome to JVBReal Estate, where your dream home becomes a reality. As a premier real estate agency, we specialize in assisting clients with buying, selling, and renting properties in the most sought-after neighborhoods.
+        </p>
+        <p className="mb-8 text-lg text-gray-700">
+          At JVBReal Estate, our mission is to transform your real estate aspirations into tangible success. Our dedicated team of experienced agents is committed to delivering exceptional service, expert advice, and an in-depth understanding of the local market.
+        </p>
+        <p className="mb-8 text-lg text-gray-700">
+          Whether you are embarking on the journey to find your perfect home, looking to sell a property, or exploring rental options, we are here to guide you every step of the way. Your goals are our priority, and we strive to make your real estate experience exciting and rewarding.
+        </p>
+      </div>
+
+      {/* Footer with interactive icons and "All rights reserved" */}
+      <footer className="bg-blue-900 text-white py-4">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <div className="flex items-center">
+            <FontAwesomeIcon icon={faEnvelope} className="text-lg mr-2" />
+            <p className="text-sm">jvbrealestate@gmail.com</p>
+          </div>
+          <div className="flex items-center">
+            <FontAwesomeIcon icon={faPhoneAlt} className="text-lg mr-2" />
+            <p className="text-sm">+63 945 331 0511</p>
+          </div>
+          <p className="text-sm">&copy; 2024 JVBReal Estate. All rights reserved.</p>
+          {/* <Link to="/contact" className="text-sm hover:underline">
+            Contact Us
+          </Link> */}
+        </div>
+      </footer>
     </div>
-  )
+  );
 }
