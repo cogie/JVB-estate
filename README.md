@@ -1,1 +1,1 @@
-JVB Realestate Full-stack project using MERN Stack and Tailwind CSS
+JVB Realestate Full-stack project using MERN Stack with redux and JWT Authentication
