@@ -23,7 +23,7 @@ export const updateUser = async (req, res, next) => {
         email: req.body.email,
         password: req.body.password,
         avatar: req.body.avatar,
-      },
+      }, //add contact number
     }, 
     {new: true}
   ); //need to update the previous info
