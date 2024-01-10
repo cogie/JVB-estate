@@ -1,60 +1,68 @@
 import mongoose from "mongoose";
 
-const listingSchema =  new mongoose.Schema({
+const listingSchema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     description: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     address: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     regularPrice: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     discountedPrice: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     bathrooms: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     bedrooms: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     furnished: {
-        type: Boolean,
-        required: true,
+      type: Boolean,
+      required: true,
     },
     parking: {
-        type: Boolean,
-        required: true,
+      type: Boolean,
+      required: true,
     },
     type: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     offer: {
-        type: Boolean,
-        required: true,
+      type: Boolean,
+      required: true,
     },
     imageUrls: {
-        type: Array,
-        required: true,
+      type: Array,
+      required: true,
     },
     userRef: {
-        type: String,
-        required: true,
-    }    
-}, 
-{timestamps: true});
+      type: String,
+      required: true,
+    },
+    // //must add a contact info from the user
+    //contact: {
+    //   type: Number,
+    //   required: true,
+    //   unique: true
+    // }
+  },
+  { timestamps: true }
+);
 
 //create the model
 const Listing = mongoose.model("Listing", listingSchema);

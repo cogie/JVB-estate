@@ -207,6 +207,9 @@ export default function Profile() {
             defaultValue={currentUser.email}
             onChange={handleChange}
             />
+            {/* 
+              must add contact number from the user
+            */}
           <input type="password" 
             placeholder="password"  
             className="rounded-lg p-3 border" 
