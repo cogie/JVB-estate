@@ -208,7 +208,7 @@ export default function Profile() {
             onChange={handleChange}
             />
             {/* 
-              must add contact number from the user
+              must add contact number from the landlord for ease of contact
             */}
           <input type="password" 
             placeholder="password"  

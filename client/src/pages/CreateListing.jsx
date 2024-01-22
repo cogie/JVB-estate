@@ -176,7 +176,7 @@ export default function CreateListing() {
                     <span>Offer</span>
                 </div>
             </div>
-            {/* 2nd div */}
+            {/* 2nd div must add contact info from the landlord */} 
             <div className="flex gap-6 flex-wrap">
                 <div className="flex gap-2 items-center">
                     <input onChange={handleChange} value={formData.bedrooms} className='p-3 border border-gray-300 rounded-lg' type="number" id='bedrooms' min='1' max='10' required/>

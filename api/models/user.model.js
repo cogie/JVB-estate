@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
     //contact: {
     //   type: Number,
     //   required: true,
-    //   unique: true
+    //   unique: true,
     // }
   },
   { timestamps: true }
