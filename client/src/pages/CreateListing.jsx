@@ -15,7 +15,8 @@ export default function CreateListing() {
         description: '',
         address: '',
         type: 'rent', //subject to change
-        bedrooms: 1,
+        
+        sbedroomss: 1, //to create conflict
         bathrooms: 1,
         regularPrice: 0,
         discountedPrice: 0,
