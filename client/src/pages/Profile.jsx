@@ -206,6 +206,7 @@ export default function Profile() {
             id="email" 
             defaultValue={currentUser.email}
             onChange={handleChange}
+            //sample sample
             />
             {/* 
               must add contact number from the landlord for ease of contact
